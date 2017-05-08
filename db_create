@@ -1,0 +1,35 @@
+CREATE TABLE Person (
+	id INTEGER not NULL,
+	login VARCHAR(255),
+	password VARCHAR(255),
+	firstname VARCHAR(255),
+	lastname VARCHAR(255),
+	email VARCHAR(255),
+	type INTEGER,
+	classId INTEGER,
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE Room (
+	id INTEGER not NULL,
+	label VARCHAR(255),
+	capacity INTEGER,
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE Class (
+	id INTEGER not NULL,
+	label VARCHAR(255),
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE Course (
+	id INTEGER not NULL,
+	personId INTEGER,
+	classId INTEGER,
+	roomId INTEGER,
+	subject VARCHAR(255),
+	date VARCHAR(255),
+	hour INTEGER,
+	PRIMARY KEY (id)
+);

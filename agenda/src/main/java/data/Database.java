@@ -117,6 +117,39 @@ public class Database {
         course.insert();
     }
 
+    /**
+     * Check if there isn't a course at this moment for this class
+     * @param classId Class id
+     * @param date Date of course
+     * @param startHour Hour of course
+     * @return List of courses
+     */
+    public List<Course> getCoursesByDateAndClass(int classId, String date, int startHour){
+        return Course.where("classId = ? and date = ? and hour = ?", classId, date, startHour);
+    }
+
+    /**
+     * Check if there isn't a course at this moment for this class
+     * @param personId Teacher id
+     * @param date Date of course
+     * @param startHour Hour of course
+     * @return List of courses
+     */
+    public List<Course> getCoursesByDateAndPerson(int personId, String date, int startHour){
+        return Course.where("personId = ? and date = ? and hour = ?", personId, date, startHour);
+    }
+
+    /**
+     * Check if the teacher has not a course at this moment
+     * @param roomId Room id
+     * @param date Date of course
+     * @param startHour Hour of course
+     * @return Boolean
+     */
+    public List<Course> getCoursesByDateAndRoom(int roomId, String date, int startHour){
+        return Course.where("roomId = ? and date = ? and hour = ?", roomId, date, startHour);
+    }
+
     // Room
 
     /**

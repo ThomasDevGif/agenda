@@ -32,6 +32,7 @@ public class IHMcreateCourse implements ActionListener {
     private JComboBox comboBoxRoom;
     private JDatePickerImpl datePicker;
     private JComboBox comboBoxHour;
+    private JComboBox comboBoxDuration;
     // Data
     private Database database;
     private List<String> mListTeachers;
@@ -41,7 +42,7 @@ public class IHMcreateCourse implements ActionListener {
     private List<String> mListRooms;
     private List<Room> mRooms;
     private List<Integer> mListHours;
-    private List<Course> mListCourses;
+    private List<Integer> mListDurations;
 
     /**
      * Constructor
@@ -52,7 +53,7 @@ public class IHMcreateCourse implements ActionListener {
         initializeClasses();
         initializeRooms();
         initializeHours();
-        initializeCourses();
+        initializeDurations();
         createIhm();
     }
 
@@ -100,10 +101,13 @@ public class IHMcreateCourse implements ActionListener {
     }
 
     /**
-     * Fill list of courses
+     * Fill list of hours
      */
-    private void initializeCourses(){
-        mListCourses = database.getAllCourses();
+    private void initializeDurations(){
+        mListDurations = new ArrayList<Integer>();
+        for(int i=1; i<5; i++){
+            mListDurations.add(i);
+        }
     }
 
     /**
@@ -144,9 +148,11 @@ public class IHMcreateCourse implements ActionListener {
         JLabel labelHour = new JLabel("Heure");
         comboBoxHour = new JComboBox(mListHours.toArray());
 
-        // Error message
+        JLabel labelDuration = new JLabel("Durée");
+        comboBoxDuration = new JComboBox(mListDurations.toArray());
+
+        // Info message
         labelInfo = new JLabel();
-        labelInfo.setForeground(Color.red);
         // Validate button
         buttonValidate = new JButton("Valider");
         buttonValidate.addActionListener(this);
@@ -163,6 +169,8 @@ public class IHMcreateCourse implements ActionListener {
         jpanel.add(datePicker);
         jpanel.add(labelHour);
         jpanel.add(comboBoxHour);
+        jpanel.add(labelDuration);
+        jpanel.add(comboBoxDuration);
         jpanel.add(labelInfo);
         jpanel.add(buttonValidate);
         window.getContentPane().add(jpanel, BorderLayout.CENTER);
@@ -177,7 +185,7 @@ public class IHMcreateCourse implements ActionListener {
         if(datePicker.getJFormattedTextField().getText().compareTo("") == 0 &&
                 textFieldSubject.getText().compareTo(Constants.phSubject) == 0){
             labelInfo.setText("Erreur, veuillez saisir tous les champs.");
-        } else { // TODO Check if there isn't already a course + reset form
+        } else {
             // Id in db of selected teacher
             int personId = (Integer) mTeachers.get(mListTeachers.indexOf(comboBoxTeacher.getSelectedItem())).get("id");
             // Id in db of selected class
@@ -187,8 +195,69 @@ public class IHMcreateCourse implements ActionListener {
             String subject = textFieldSubject.getText();
             String date = datePicker.getJFormattedTextField().getText();
             int startHour = (Integer) comboBoxHour.getSelectedItem();
-            database.createCourse(personId, classId, roomId, subject, date, startHour);
-            resetForm();
+            if(!checkValidClass(classId, date, startHour)){
+                setErrorMessage("La classe a déjà un cours à cette date.");
+            }
+            else if(!checkValidTeacher(personId, date, startHour)){
+                setErrorMessage("Le professeur a déjà un cours à cette date.");
+            }
+            else if(!checkValidRoom(roomId, date, startHour)){
+                setErrorMessage("La salle est occupée à cette date.");
+            }
+            else {
+                // TODO create multi courses when duration >1
+                database.createCourse(personId, classId, roomId, subject, date, startHour);
+                resetForm();
+                setSuccessMessage("Le cours a été créé.");
+            }
+        }
+    }
+
+    /**
+     * Check if there isn't a course at this moment for this class
+     * @param classId Class id
+     * @param date Date of course
+     * @param startHour Hour of course
+     * @return Boolean
+     */
+    private boolean checkValidClass(int classId, String date, int startHour){
+        List<Course> courses = database.getCoursesByDateAndClass(classId, date, startHour);
+        if(courses == null || courses.size() == 0){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Check if the teacher has not a course at this moment
+     * @param personId Teacher id
+     * @param date Date of course
+     * @param startHour Hour of course
+     * @return Boolean
+     */
+    private boolean checkValidTeacher(int personId, String date, int startHour){
+        List<Course> courses = database.getCoursesByDateAndPerson(personId, date, startHour);
+        if(courses == null || courses.size() == 0){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Check if the teacher has not a course at this moment
+     * @param roomId Room id
+     * @param date Date of course
+     * @param startHour Hour of course
+     * @return Boolean
+     */
+    private boolean checkValidRoom(int roomId, String date, int startHour){
+        List<Course> courses = database.getCoursesByDateAndRoom(roomId, date, startHour);
+        if(courses == null || courses.size() == 0){
+            return true;
+        } else {
+            return false;
         }
     }
 
@@ -198,6 +267,24 @@ public class IHMcreateCourse implements ActionListener {
     private void resetForm(){
         textFieldSubject.setText("");
         datePicker.getJFormattedTextField().setText("");
+    }
+
+    /**
+     * Display an successs message to the user
+     * @param message Success message
+     */
+    private void setSuccessMessage(String message){
+        labelInfo.setForeground(Color.GREEN);
+        labelInfo.setText(message);
+    }
+
+    /**
+     * Display an error message to the user
+     * @param message Error message
+     */
+    private void setErrorMessage(String message){
+        labelInfo.setForeground(Color.RED);
+        labelInfo.setText(message);
     }
 
     /**

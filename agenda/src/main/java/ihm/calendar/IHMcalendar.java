@@ -1,5 +1,8 @@
 package ihm.calendar;
 
+import data.Database;
+import model.Person;
+
 import javax.swing.*;
 import javax.swing.table.*;
 import java.awt.*;
@@ -7,6 +10,10 @@ import java.awt.event.*;
 import java.util.*;
 
 public class IHMcalendar {
+
+    // Variables
+    static Database database;
+    static Person person;
     static JLabel lblMonth, lblYear;
     static JButton btnPrev, btnNext;
     static JTable tblCalendar;
@@ -18,13 +25,15 @@ public class IHMcalendar {
     static JPanel pnlCalendar; //The panel
     static int realDay, realMonth, realYear, currentMonth, currentYear;
 
-    public IHMcalendar(){
+    public IHMcalendar(Database database, Person person){
         try {UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());}
         catch (ClassNotFoundException e) {System.out.println("ERROR: "+e.getMessage());}
         catch (InstantiationException e) {System.out.println("ERROR: "+e.getMessage());}
         catch (IllegalAccessException e) {System.out.println("ERROR: "+e.getMessage());}
         catch (UnsupportedLookAndFeelException e) {System.out.println("ERROR: "+e.getMessage());}
 
+        this.database = database;
+        this.person = person;
         createComponents();
         refreshCalendar (realMonth, realYear); //Refresh ihm.calendar
         initializeListeners();

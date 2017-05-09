@@ -140,6 +140,16 @@ public class Database {
     }
 
     /**
+     * Get courses of a person at a day
+     * @param personId Teacher id
+     * @param date Date of course
+     * @return List of courses
+     */
+    public List<Course> getCoursesByDayAndPerson(int personId, String date){
+        return Course.where("personId = ? and date = ?", personId, date);
+    }
+
+    /**
      * Check if the teacher has not a course at this moment
      * @param roomId Room id
      * @param date Date of course

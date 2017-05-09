@@ -38,7 +38,7 @@ public class IHMhome implements ActionListener {
             window = new JFrame(Constants.appTitleAdmin);
         } else if(type == 2){
             window = new JFrame(Constants.appTitleTeacher);
-        } else if(type == 2){
+        } else if(type == 3){
             window = new JFrame(Constants.appTitleStudent);
         }
         window.setBounds(200,200,650,500);
@@ -88,7 +88,7 @@ public class IHMhome implements ActionListener {
         } else if(e.getSource() == menuItemCreateUSer){
             new IHMcreateUser(database);
         } else if(e.getSource() == menuItemDisplayPlanning){
-            new IHMcalendar();
+            new IHMcalendar(database, person);
         } else if(e.getSource() == menuItemUpdatePlanning){
             new IHMcreateCourse(database);
         }

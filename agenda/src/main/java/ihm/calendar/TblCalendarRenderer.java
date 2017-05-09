@@ -26,7 +26,9 @@ public class TblCalendarRenderer extends DefaultTableCellRenderer {
         }
         // Set mouse listener
         if (focused && value != null) {
-            new IHMday(String.valueOf(value),
+            new IHMday(IHMcalendar.database,
+                    IHMcalendar.person,
+                    String.valueOf(value),
                     String.valueOf(currentMonth+1),
                     String.valueOf(currentYear));
             IHMcalendar.frmMain.dispose();

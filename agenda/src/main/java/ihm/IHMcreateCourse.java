@@ -184,7 +184,7 @@ public class IHMcreateCourse implements ActionListener {
     private void createCourse(){
         if(datePicker.getJFormattedTextField().getText().compareTo("") == 0 &&
                 textFieldSubject.getText().compareTo(Constants.phSubject) == 0){
-            labelInfo.setText("Erreur, veuillez saisir tous les champs.");
+            labelInfo.setText(Constants.errorFillForm);
         } else {
             // Id in db of selected teacher
             int personId = (Integer) mTeachers.get(mListTeachers.indexOf(comboBoxTeacher.getSelectedItem())).get("id");
@@ -196,19 +196,19 @@ public class IHMcreateCourse implements ActionListener {
             String date = datePicker.getJFormattedTextField().getText();
             int startHour = (Integer) comboBoxHour.getSelectedItem();
             if(!checkValidClass(classId, date, startHour)){
-                setErrorMessage("La classe a déjà un cours à cette date.");
+                setErrorMessage(Constants.errorDateClass);
             }
             else if(!checkValidTeacher(personId, date, startHour)){
-                setErrorMessage("Le professeur a déjà un cours à cette date.");
+                setErrorMessage(Constants.errorDateTeacher);
             }
             else if(!checkValidRoom(roomId, date, startHour)){
-                setErrorMessage("La salle est occupée à cette date.");
+                setErrorMessage(Constants.errorDateRoom);
             }
             else {
                 // TODO create multi courses when duration >1
                 database.createCourse(personId, classId, roomId, subject, date, startHour);
                 resetForm();
-                setSuccessMessage("Le cours a été créé.");
+                setSuccessMessage(Constants.successCreateCourse);
             }
         }
     }

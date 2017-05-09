@@ -17,4 +17,11 @@ public class Constants {
     public final static String phLastname = "Nom";
     public final static String phEmail = "Courriel";
     public final static String phSubject = "Matière";
+    // Error messages
+    public final static String errorFillForm = "Erreur, veuillez saisir tous les champs.";
+    public final static String errorDateClass = "La classe a déjà un cours à cette date.";
+    public final static String errorDateTeacher = "Le professeur a déjà un cours à cette date.";
+    public final static String errorDateRoom = "La salle est occupée à cette date.";
+    // Success messages
+    public final static String successCreateCourse = "Le cours a été créé.";
 }

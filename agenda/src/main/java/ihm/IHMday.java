@@ -4,6 +4,7 @@ import data.Database;
 import ihm.calendar.IHMcalendar;
 import model.Course;
 import model.Person;
+import model.Room;
 
 import javax.swing.*;
 import java.awt.*;
@@ -75,6 +76,7 @@ public class IHMday implements ActionListener {
      * Get and display courses for a person at a date
      */
     private void initializeCourses(){
+        // Get all the user's courses for the selected day
         if(person.getType() == 1 || person.getType() == 2){ // Admin or teacher
             mListCourses = database.getCoursesByDayAndPerson((Integer) person.get("id"), date);
         }
@@ -82,14 +84,19 @@ public class IHMday implements ActionListener {
             mListCourses = database.getCoursesByDayAndClass(person.getClassId(), date);
         }
 
-        JLabel labelCourseSubject = new JLabel();
-        JLabel labelCourseTeacher = new JLabel();
+        JLabel labelCourseSubject = new JLabel(); // Label for subject and room
+        JLabel labelCourseTeacher = new JLabel(); // Label for teacher
         labelCourseSubject.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelCourseTeacher.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Person teacher;
+        Room room;
         for(Course course : mListCourses){
-            // Display subject
-            labelCourseSubject.setText(course.getSubject() + " - " + course.getClassId());
-            labelCourseTeacher.setText(String.valueOf(course.getPersonId()));
+            // Get the subject, teacher and room of the course
+            teacher = database.getUserById(course.getPersonId());
+            room = database.getRoomById(course.getRoomId());
+            labelCourseSubject.setText(course.getSubject() + " - " + room.getLabel());
+            labelCourseTeacher.setText(teacher.getFirstname() + " " + teacher.getLastname());
+            // Set course at the good hour
             switch (course.getHour()){
                 case 8: {
                     panel8.add(labelCourseSubject);

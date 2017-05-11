@@ -51,9 +51,14 @@
       <file leaf-file-name="Database.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/data/Database.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="259">
-              <caret line="205" column="59" lean-forward="true" selection-start-line="205" selection-start-column="59" selection-end-line="205" selection-end-column="59" />
-              <folding />
+            <state relative-caret-position="-767">
+              <caret line="87" column="21" lean-forward="false" selection-start-line="87" selection-start-column="21" selection-end-line="87" selection-end-column="21" />
+              <folding>
+                <element signature="e#2272#2273#0" expanded="true" />
+                <element signature="e#2331#2332#0" expanded="true" />
+                <element signature="e#5324#5325#0" expanded="true" />
+                <element signature="e#5379#5380#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -61,11 +66,9 @@
       <file leaf-file-name="TblCalendarRenderer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ihm/calendar/TblCalendarRenderer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
+            <state relative-caret-position="306">
               <caret line="28" column="22" lean-forward="false" selection-start-line="28" selection-start-column="22" selection-end-line="28" selection-end-column="22" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -73,8 +76,8 @@
       <file leaf-file-name="IHMday.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ihm/IHMday.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="847">
-              <caret line="127" column="17" lean-forward="true" selection-start-line="127" selection-start-column="17" selection-end-line="127" selection-end-column="17" />
+            <state relative-caret-position="228">
+              <caret line="73" column="0" lean-forward="true" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -155,8 +158,8 @@
         <option value="$PROJECT_DIR$/src/main/java/ihm/IHMhome.java" />
         <option value="$PROJECT_DIR$/src/main/java/ihm/calendar/TblCalendarRenderer.java" />
         <option value="$PROJECT_DIR$/src/main/java/main/main.java" />
-        <option value="$PROJECT_DIR$/src/main/java/data/Database.java" />
         <option value="$PROJECT_DIR$/src/main/java/ihm/calendar/IHMcalendar.java" />
+        <option value="$PROJECT_DIR$/src/main/java/data/Database.java" />
         <option value="$PROJECT_DIR$/src/main/java/ihm/IHMday.java" />
       </list>
     </option>
@@ -1007,12 +1010,12 @@
       <workItem from="1494227801997" duration="95000" />
       <workItem from="1494229084218" duration="3667000" />
       <workItem from="1494346520253" duration="5127000" />
-      <workItem from="1494518354269" duration="2796000" />
+      <workItem from="1494518354269" duration="3562000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75673000" />
+    <option name="totallyTimeSpent" value="76439000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1352,16 +1355,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ihm/calendar/TblCalendarRenderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="28" column="22" lean-forward="false" selection-start-line="28" selection-start-column="22" selection-end-line="28" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ihm/calendar/LvwCalendarRenderer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -1388,14 +1381,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/data/Database.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="205" column="59" lean-forward="true" selection-start-line="205" selection-start-column="59" selection-end-line="205" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ihm/calendar/IHMcalendar.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -1404,10 +1389,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/data/Database.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-767">
+          <caret line="87" column="21" lean-forward="false" selection-start-line="87" selection-start-column="21" selection-end-line="87" selection-end-column="21" />
+          <folding>
+            <element signature="e#2272#2273#0" expanded="true" />
+            <element signature="e#2331#2332#0" expanded="true" />
+            <element signature="e#5324#5325#0" expanded="true" />
+            <element signature="e#5379#5380#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ihm/calendar/TblCalendarRenderer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="28" column="22" lean-forward="false" selection-start-line="28" selection-start-column="22" selection-end-line="28" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ihm/IHMday.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="847">
-          <caret line="127" column="17" lean-forward="true" selection-start-line="127" selection-start-column="17" selection-end-line="127" selection-end-column="17" />
+        <state relative-caret-position="228">
+          <caret line="73" column="0" lean-forward="true" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

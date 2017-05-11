@@ -82,6 +82,15 @@ public class Database {
         return Person.where("type = ?", type);
     }
 
+    /**
+     * Get user by it's id
+     * @param personId Person id
+     * @return Person
+     */
+    public Person getUserById(int personId){
+        return Person.findFirst("id = ?", personId);
+    }
+
     // Class
 
     /**
@@ -178,6 +187,15 @@ public class Database {
      */
     public List<Room> getAllRooms(){
         return Room.findAll();
+    }
+
+    /**
+     * Get room by it's id
+     * @param roomId Room id
+     * @return Room
+     */
+    public Room getRoomById(int roomId){
+        return Room.findFirst("id = ?", roomId);
     }
 
     // General

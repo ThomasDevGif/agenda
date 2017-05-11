@@ -205,8 +205,9 @@ public class IHMcreateCourse implements ActionListener {
                 setErrorMessage(Constants.errorDateRoom);
             }
             else {
-                // TODO create multi courses when duration >1
-                database.createCourse(personId, classId, roomId, subject, date, startHour);
+                for(int i=0; i<(Integer) comboBoxDuration.getSelectedItem(); i++){
+                    database.createCourse(personId, classId, roomId, subject, date, startHour+i);
+                }
                 resetForm();
                 setSuccessMessage(Constants.successCreateCourse);
             }

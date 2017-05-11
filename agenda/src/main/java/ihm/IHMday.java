@@ -84,18 +84,18 @@ public class IHMday implements ActionListener {
             mListCourses = database.getCoursesByDayAndClass(person.getClassId(), date);
         }
 
-        JLabel labelCourseSubject = new JLabel(); // Label for subject and room
-        JLabel labelCourseTeacher = new JLabel(); // Label for teacher
-        labelCourseSubject.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelCourseTeacher.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        JLabel labelCourseSubject; // Label for subject and room
+        JLabel labelCourseTeacher; // Label for teacher
         Person teacher;
         Room room;
         for(Course course : mListCourses){
             // Get the subject, teacher and room of the course
             teacher = database.getUserById(course.getPersonId());
             room = database.getRoomById(course.getRoomId());
-            labelCourseSubject.setText(course.getSubject() + " - " + room.getLabel());
-            labelCourseTeacher.setText(teacher.getFirstname() + " " + teacher.getLastname());
+            labelCourseSubject = new JLabel(course.getSubject() + " - " + room.getLabel());
+            labelCourseTeacher = new JLabel(teacher.getFirstname() + " " + teacher.getLastname());
+            labelCourseSubject.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            labelCourseTeacher.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
             // Set course at the good hour
             switch (course.getHour()){
                 case 8: {

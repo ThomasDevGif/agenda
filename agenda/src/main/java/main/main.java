@@ -12,8 +12,5 @@ public class main {
 //        db.populateDatabase();
 
         new IHMconnect();
-//        new IHMcalendar();
-//        new IHMcreateUser(db);
-//        new IHMcreateCourse(db);
     }
 }

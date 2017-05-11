@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 public class IHMday implements ActionListener {
@@ -37,33 +38,112 @@ public class IHMday implements ActionListener {
         this.database = database;
         this.person = person;
         this.date = dateFormat(day, month, year);
+        initializePanels();
         initializeCourses();
         createIHM();
+    }
+
+    /**
+     * Initialize all panels to display courses
+     */
+    private void initializePanels(){
+        panel8 = new JPanel(new GridLayout(2, 0));
+        panel9 = new JPanel(new GridLayout(2, 0));
+        panel10 = new JPanel(new GridLayout(2, 0));
+        panel11 = new JPanel(new GridLayout(2, 0));
+        panel12 = new JPanel(new GridLayout(2, 0));
+        panel13 = new JPanel(new GridLayout(2, 0));
+        panel14 = new JPanel(new GridLayout(2, 0));
+        panel15 = new JPanel(new GridLayout(2, 0));
+        panel16 = new JPanel(new GridLayout(2, 0));
+        panel17 = new JPanel(new GridLayout(2, 0));
+        panel18 = new JPanel(new GridLayout(2, 0));
+        panel8.setBorder(BorderFactory.createLineBorder(Color.black));
+        panel9.setBorder(BorderFactory.createLineBorder(Color.black));
+        panel10.setBorder(BorderFactory.createLineBorder(Color.black));
+        panel11.setBorder(BorderFactory.createLineBorder(Color.black));
+        panel12.setBorder(BorderFactory.createLineBorder(Color.black));
+        panel13.setBorder(BorderFactory.createLineBorder(Color.black));
+        panel14.setBorder(BorderFactory.createLineBorder(Color.black));
+        panel15.setBorder(BorderFactory.createLineBorder(Color.black));
+        panel16.setBorder(BorderFactory.createLineBorder(Color.black));
+        panel17.setBorder(BorderFactory.createLineBorder(Color.black));
+        panel18.setBorder(BorderFactory.createLineBorder(Color.black));
     }
 
     /**
      * Get and display courses for a person at a date
      */
     private void initializeCourses(){
-        mListCourses = database.getCoursesByDayAndPerson((Integer) person.get("id"), date);
-        panel8 = new JPanel();
-        panel9 = new JPanel();
+        if(person.getType() == 1 || person.getType() == 2){ // Admin or teacher
+            mListCourses = database.getCoursesByDayAndPerson((Integer) person.get("id"), date);
+        }
+        else{ // Student
+            mListCourses = database.getCoursesByDayAndClass(person.getClassId(), date);
+        }
 
         JLabel labelCourseSubject = new JLabel();
+        JLabel labelCourseTeacher = new JLabel();
+        labelCourseSubject.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelCourseTeacher.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         for(Course course : mListCourses){
             // Display subject
-            labelCourseSubject.setText(course.getSubject());
-            System.out.println("Course: " + course.getHour());
-
+            labelCourseSubject.setText(course.getSubject() + " - " + course.getClassId());
+            labelCourseTeacher.setText(String.valueOf(course.getPersonId()));
             switch (course.getHour()){
                 case 8: {
-                    System.out.println("8h !");
                     panel8.add(labelCourseSubject);
+                    panel8.add(labelCourseTeacher);
                     break;
                 }
                 case 9: {
-                    System.out.println("9h !");
-                    panel8.add(labelCourseSubject);
+                    panel9.add(labelCourseSubject);
+                    panel9.add(labelCourseTeacher);
+                    break;
+                }
+                case 10: {
+                    panel10.add(labelCourseSubject);
+                    panel10.add(labelCourseTeacher);
+                    break;
+                }
+                case 11: {
+                    panel11.add(labelCourseSubject);
+                    panel11.add(labelCourseTeacher);
+                    break;
+                }
+                case 12: {
+                    panel12.add(labelCourseSubject);
+                    panel12.add(labelCourseTeacher);
+                    break;
+                }
+                case 13: {
+                    panel13.add(labelCourseSubject);
+                    panel13.add(labelCourseTeacher);
+                    break;
+                }
+                case 14: {
+                    panel14.add(labelCourseSubject);
+                    panel14.add(labelCourseTeacher);
+                    break;
+                }
+                case 15: {
+                    panel15.add(labelCourseSubject);
+                    panel15.add(labelCourseTeacher);
+                    break;
+                }
+                case 16: {
+                    panel16.add(labelCourseSubject);
+                    panel16.add(labelCourseTeacher);
+                    break;
+                }
+                case 17: {
+                    panel17.add(labelCourseSubject);
+                    panel17.add(labelCourseTeacher);
+                    break;
+                }
+                case 18: {
+                    panel18.add(labelCourseSubject);
+                    panel18.add(labelCourseTeacher);
                     break;
                 }
             }
@@ -75,7 +155,7 @@ public class IHMday implements ActionListener {
      */
     private void createIHM(){
         window = new JFrame();
-        window.setBounds(200,200,400,700);
+        window.setBounds(200,200,400,500);
 
         // Title
         JLabel labelTitle = new JLabel(date, SwingConstants.CENTER);
@@ -83,56 +163,57 @@ public class IHMday implements ActionListener {
         // Content
         JPanel contentPanel = new JPanel(new GridLayout(0, 2));
         JLabel labelHours = new JLabel("8h");
+        labelHours.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         contentPanel.add(labelHours);
         contentPanel.add(panel8);
 
         labelHours = new JLabel("9h");
-        panel9 = new JPanel();
+        labelHours.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         contentPanel.add(labelHours);
         contentPanel.add(panel9);
 
         labelHours = new JLabel("10h");
-        panel10 = new JPanel();
+        labelHours.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         contentPanel.add(labelHours);
         contentPanel.add(panel10);
 
         labelHours = new JLabel("11h");
-        panel11 = new JPanel();
+        labelHours.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         contentPanel.add(labelHours);
         contentPanel.add(panel11);
 
         labelHours = new JLabel("12h");
-        panel12 = new JPanel();
+        labelHours.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         contentPanel.add(labelHours);
         contentPanel.add(panel12);
 
         labelHours = new JLabel("13h");
-        panel13 = new JPanel();
+        labelHours.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         contentPanel.add(labelHours);
         contentPanel.add(panel13);
 
         labelHours = new JLabel("14h");
-        panel14 = new JPanel();
+        labelHours.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         contentPanel.add(labelHours);
         contentPanel.add(panel14);
 
         labelHours = new JLabel("15h");
-        panel15 = new JPanel();
+        labelHours.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         contentPanel.add(labelHours);
         contentPanel.add(panel15);
 
         labelHours = new JLabel("16h");
-        panel16 = new JPanel();
+        labelHours.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         contentPanel.add(labelHours);
         contentPanel.add(panel16);
 
         labelHours = new JLabel("17h");
-        panel17 = new JPanel();
+        labelHours.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         contentPanel.add(labelHours);
         contentPanel.add(panel17);
 
         labelHours = new JLabel("18h");
-        panel18 = new JPanel();
+        labelHours.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         contentPanel.add(labelHours);
         contentPanel.add(panel18);
 

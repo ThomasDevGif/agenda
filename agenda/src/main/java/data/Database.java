@@ -140,6 +140,17 @@ public class Database {
     }
 
     /**
+     * Check if the teacher has not a course at this moment
+     * @param roomId Room id
+     * @param date Date of course
+     * @param startHour Hour of course
+     * @return Boolean
+     */
+    public List<Course> getCoursesByDateAndRoom(int roomId, String date, int startHour){
+        return Course.where("roomId = ? and date = ? and hour = ?", roomId, date, startHour);
+    }
+
+    /**
      * Get courses of a person at a day
      * @param personId Teacher id
      * @param date Date of course
@@ -150,14 +161,13 @@ public class Database {
     }
 
     /**
-     * Check if the teacher has not a course at this moment
-     * @param roomId Room id
+     * Get courses of a person at a day
+     * @param classId Student class id
      * @param date Date of course
-     * @param startHour Hour of course
-     * @return Boolean
+     * @return List of courses
      */
-    public List<Course> getCoursesByDateAndRoom(int roomId, String date, int startHour){
-        return Course.where("roomId = ? and date = ? and hour = ?", roomId, date, startHour);
+    public List<Course> getCoursesByDayAndClass(int classId, String date){
+        return Course.where("classId = ? and date = ?", classId, date);
     }
 
     // Room

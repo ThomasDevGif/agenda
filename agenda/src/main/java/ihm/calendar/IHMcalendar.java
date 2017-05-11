@@ -53,7 +53,7 @@ public class IHMcalendar {
         pnlCalendar = new JPanel(null); //Create the "panel" to place components
 
         // Preparing the frame
-        frmMain.setSize(330, 390); //Two arguments: width and height
+        frmMain.setSize(330, 370); //Two arguments: width and height
         pane = frmMain.getContentPane();
         pane.setLayout(null); //Apply the null layout
         frmMain.setDefaultCloseOperation (JFrame.HIDE_ON_CLOSE);

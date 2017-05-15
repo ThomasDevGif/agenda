@@ -162,7 +162,7 @@ public class IHMday implements ActionListener {
      */
     private void createIHM(){
         window = new JFrame();
-        window.setBounds(200,200,400,500);
+        window.setBounds(200,200,400,700);
 
         // Title
         JLabel labelTitle = new JLabel(date, SwingConstants.CENTER);

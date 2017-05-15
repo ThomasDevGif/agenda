@@ -48,17 +48,17 @@ public class IHMday implements ActionListener {
      * Initialize all panels to display courses
      */
     private void initializePanels(){
-        panel8 = new JPanel(new GridLayout(2, 0));
-        panel9 = new JPanel(new GridLayout(2, 0));
-        panel10 = new JPanel(new GridLayout(2, 0));
-        panel11 = new JPanel(new GridLayout(2, 0));
-        panel12 = new JPanel(new GridLayout(2, 0));
-        panel13 = new JPanel(new GridLayout(2, 0));
-        panel14 = new JPanel(new GridLayout(2, 0));
-        panel15 = new JPanel(new GridLayout(2, 0));
-        panel16 = new JPanel(new GridLayout(2, 0));
-        panel17 = new JPanel(new GridLayout(2, 0));
-        panel18 = new JPanel(new GridLayout(2, 0));
+        panel8 = new JPanel(new GridLayout(3, 0));
+        panel9 = new JPanel(new GridLayout(3, 0));
+        panel10 = new JPanel(new GridLayout(3, 0));
+        panel11 = new JPanel(new GridLayout(3, 0));
+        panel12 = new JPanel(new GridLayout(3, 0));
+        panel13 = new JPanel(new GridLayout(3, 0));
+        panel14 = new JPanel(new GridLayout(3, 0));
+        panel15 = new JPanel(new GridLayout(3, 0));
+        panel16 = new JPanel(new GridLayout(3, 0));
+        panel17 = new JPanel(new GridLayout(3, 0));
+        panel18 = new JPanel(new GridLayout(3, 0));
         panel8.setBorder(BorderFactory.createLineBorder(Color.black));
         panel9.setBorder(BorderFactory.createLineBorder(Color.black));
         panel10.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -84,7 +84,8 @@ public class IHMday implements ActionListener {
             mListCourses = database.getCoursesByDayAndClass(person.getClassId(), date);
         }
 
-        JLabel labelCourseSubject; // Label for subject and room
+        JLabel labelCourseSubject; // Label for subject
+        JLabel labelCourseRoom; // Label for room
         JLabel labelCourseTeacher; // Label for teacher
         Person teacher;
         Room room;
@@ -92,64 +93,77 @@ public class IHMday implements ActionListener {
             // Get the subject, teacher and room of the course
             teacher = database.getUserById(course.getPersonId());
             room = database.getRoomById(course.getRoomId());
-            labelCourseSubject = new JLabel(course.getSubject() + " - " + room.getLabel());
+            labelCourseSubject = new JLabel(course.getSubject());
+            labelCourseRoom = new JLabel(room.getLabel());
             labelCourseTeacher = new JLabel(teacher.getFirstname() + " " + teacher.getLastname());
             labelCourseSubject.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            labelCourseRoom.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
             labelCourseTeacher.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
             // Set course at the good hour
             switch (course.getHour()){
                 case 8: {
                     panel8.add(labelCourseSubject);
+                    panel8.add(labelCourseRoom);
                     panel8.add(labelCourseTeacher);
                     break;
                 }
                 case 9: {
                     panel9.add(labelCourseSubject);
+                    panel9.add(labelCourseRoom);
                     panel9.add(labelCourseTeacher);
                     break;
                 }
                 case 10: {
                     panel10.add(labelCourseSubject);
+                    panel10.add(labelCourseRoom);
                     panel10.add(labelCourseTeacher);
                     break;
                 }
                 case 11: {
                     panel11.add(labelCourseSubject);
+                    panel11.add(labelCourseRoom);
                     panel11.add(labelCourseTeacher);
                     break;
                 }
                 case 12: {
                     panel12.add(labelCourseSubject);
+                    panel12.add(labelCourseRoom);
                     panel12.add(labelCourseTeacher);
                     break;
                 }
                 case 13: {
                     panel13.add(labelCourseSubject);
+                    panel13.add(labelCourseRoom);
                     panel13.add(labelCourseTeacher);
                     break;
                 }
                 case 14: {
                     panel14.add(labelCourseSubject);
+                    panel14.add(labelCourseRoom);
                     panel14.add(labelCourseTeacher);
                     break;
                 }
                 case 15: {
                     panel15.add(labelCourseSubject);
+                    panel15.add(labelCourseRoom);
                     panel15.add(labelCourseTeacher);
                     break;
                 }
                 case 16: {
                     panel16.add(labelCourseSubject);
+                    panel16.add(labelCourseRoom);
                     panel16.add(labelCourseTeacher);
                     break;
                 }
                 case 17: {
                     panel17.add(labelCourseSubject);
+                    panel17.add(labelCourseRoom);
                     panel17.add(labelCourseTeacher);
                     break;
                 }
                 case 18: {
                     panel18.add(labelCourseSubject);
+                    panel18.add(labelCourseRoom);
                     panel18.add(labelCourseTeacher);
                     break;
                 }

@@ -1,8 +1,6 @@
 package data;
 
-import model.Course;
-import model.Person;
-import model.Room;
+import model.*;
 import model.Class;
 import org.javalite.activejdbc.Base;
 
@@ -114,13 +112,13 @@ public class Database {
     /**
      * Create a course in db
      */
-    public void createCourse(int personId, int classId, int roomId, String subject, String date, int startHour){
+    public void createCourse(int personId, int classId, int roomId, int subjectId, String date, int startHour){
         Course course = new Course();
         course.set("id", Course.count()+1);
         course.set("personId", personId);
         course.set("classId", classId);
         course.set("roomId", roomId);
-        course.set("subject", subject);
+        course.set("subjectId", subjectId);
         course.set("date", date);
         course.set("hour", startHour);
         course.insert();
@@ -198,68 +196,32 @@ public class Database {
         return Room.findFirst("id = ?", roomId);
     }
 
+    // Subject
+
+    /**
+     * Get all subjects from db
+     * @return List of subjects
+     */
+    public List<Subject> getAllSubjects() {
+        return Subject.findAll().orderBy("label");
+    }
+
+    /**
+     * Get sibject by it's id
+     * @param subjectId Subject id
+     * @return Subject
+     */
+    public Subject getSubjectById(int subjectId){
+        return Subject.findFirst("id = ?", subjectId);
+    }
+
     // General
 
     /**
      * Create some data in db
      */
     public void populateDatabase(){
-        Person person = new Person();
-        person.set("id", 1);
-        person.set("login", "thomas");
-        person.set("password", "password");
-        person.set("firstname", "Thomas");
-        person.set("lastname", "TOURNOUX");
-        person.set("email", "thomas.tournoux@epsi.fr");
-        person.set("classId", null);
-        person.set("type", 1);
-        person.insert();
-
-        Person person2 = new Person();
-        person2.set("id", 2);
-        person2.set("login", "manue");
-        person2.set("password", "password");
-        person2.set("firstname", "Emmanuelle");
-        person2.set("lastname", "CORREIA");
-        person2.set("email", "emmanuelle.correia@epsi.fr");
-        person2.set("classId", null);
-        person2.set("type", 2);
-        person2.insert();
-
-        Person person3 = new Person();
-        person3.set("id", 3);
-        person3.set("login", "student");
-        person3.set("password", "password");
-        person3.set("firstname", "Student");
-        person3.set("lastname", "STUDENT");
-        person3.set("email", "student@epsi.fr");
-        person3.set("classId", 1);
-        person3.set("type", 3);
-        person3.insert();
-
-        Room room = new Room();
-        room.set("id", 1);
-        room.set("label", "103");
-        room.set("capacity", 30);
-        room.insert();
-
-        Room room2 = new Room();
-        room2.set("id", 2);
-        room2.set("label", "404");
-        room2.set("capacity", 25);
-        room2.insert();
-
-        Class classToCreate = new Class();
-        classToCreate.set("id", 1);
-        classToCreate.set("label", "B3 - G1");
-        classToCreate.insert();
-
-        Class classToCreate2 = new Class();
-        classToCreate2.set("id", 2);
-        classToCreate2.set("label", "B3 - G2");
-        classToCreate2.insert();
-
-        System.out.println("Some data created !");
+        new PopulateDB();
     }
 
     /**

@@ -24,10 +24,10 @@ public class Course extends Model {
         set("roomId", roomId);
     }
 
-    public String getSubject() { return getString("subject"); }
+    public int getSubjectId() { return getInteger("subjectId"); }
 
-    public void setSubject(String subject) {
-        set("subject", subject);
+    public void setSubjectId(int subjectId) {
+        set("subjectId", subjectId);
     }
 
     public String getDate() { return getString("date"); }

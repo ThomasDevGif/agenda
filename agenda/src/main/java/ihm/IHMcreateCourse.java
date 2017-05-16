@@ -2,15 +2,12 @@ package ihm;
 
 import data.Constants;
 import data.Database;
+import model.*;
 import model.Class;
-import model.Course;
-import model.Person;
-import model.Room;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 import util.DateLabelFormatter;
-import util.JPlaceholderTextField;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,7 +24,7 @@ public class IHMcreateCourse implements ActionListener {
     private JButton buttonValidate;
     private JFrame window;
     private JComboBox comboBoxTeacher;
-    private JPlaceholderTextField textFieldSubject;
+    private JComboBox comboBoxSubject;
     private JComboBox comboBoxClass;
     private JComboBox comboBoxRoom;
     private JDatePickerImpl datePicker;
@@ -41,6 +38,8 @@ public class IHMcreateCourse implements ActionListener {
     private List<Class> mClasses;
     private List<String> mListRooms;
     private List<Room> mRooms;
+    private List<String> mListSubjects;
+    private List<Subject> mSubjects;
     private List<Integer> mListHours;
     private List<Integer> mListDurations;
 
@@ -52,6 +51,7 @@ public class IHMcreateCourse implements ActionListener {
         initializeTeacher();
         initializeClasses();
         initializeRooms();
+        initializeSubjects();
         initializeHours();
         initializeDurations();
         createIhm();
@@ -87,6 +87,17 @@ public class IHMcreateCourse implements ActionListener {
         mRooms = database.getAllRooms();
         for(Room room : mRooms){
             mListRooms.add(room.getLabel());
+        }
+    }
+
+    /**
+     * Fill list of subjects
+     */
+    private void initializeSubjects(){
+        mListSubjects = new ArrayList<String>();
+        mSubjects = database.getAllSubjects();
+        for(Subject subject : mSubjects){
+            mListSubjects.add(subject.getLabel());
         }
     }
 
@@ -128,7 +139,7 @@ public class IHMcreateCourse implements ActionListener {
 
         // Subject
         JLabel labelSubject = new JLabel("Matière");
-        textFieldSubject = new JPlaceholderTextField(Constants.phSubject);
+        comboBoxSubject = new JComboBox(mListSubjects.toArray());
 
         // Room
         JLabel labelRoom = new JLabel("Salle");
@@ -162,7 +173,7 @@ public class IHMcreateCourse implements ActionListener {
         jpanel.add(labelClass);
         jpanel.add(comboBoxClass);
         jpanel.add(labelSubject);
-        jpanel.add(textFieldSubject);
+        jpanel.add(comboBoxSubject);
         jpanel.add(labelRoom);
         jpanel.add(comboBoxRoom);
         jpanel.add(labelDate);
@@ -182,8 +193,7 @@ public class IHMcreateCourse implements ActionListener {
      * Create course in db
      */
     private void createCourse(){
-        if(datePicker.getJFormattedTextField().getText().compareTo("") == 0 &&
-                textFieldSubject.getText().compareTo(Constants.phSubject) == 0){
+        if(datePicker.getJFormattedTextField().getText().compareTo("") == 0){
             labelInfo.setText(Constants.errorFillForm);
         } else {
             // Id in db of selected teacher
@@ -192,7 +202,8 @@ public class IHMcreateCourse implements ActionListener {
             int classId = (Integer) mClasses.get(mListClasses.indexOf(comboBoxClass.getSelectedItem())).get("id");
             // Id in db of selected room
             int roomId = (Integer) mRooms.get(mListRooms.indexOf(comboBoxRoom.getSelectedItem())).get("id");
-            String subject = textFieldSubject.getText();
+            // Id in db of selected subject
+            int subjectId = (Integer) mSubjects.get(mListSubjects.indexOf(comboBoxSubject.getSelectedItem())).get("id");
             String date = datePicker.getJFormattedTextField().getText();
             int startHour = (Integer) comboBoxHour.getSelectedItem();
             if(!checkValidClass(classId, date, startHour)){
@@ -206,7 +217,7 @@ public class IHMcreateCourse implements ActionListener {
             }
             else {
                 for(int i=0; i<(Integer) comboBoxDuration.getSelectedItem(); i++){
-                    database.createCourse(personId, classId, roomId, subject, date, startHour+i);
+                    database.createCourse(personId, classId, roomId, subjectId, date, startHour+i);
                 }
                 resetForm();
                 setSuccessMessage(Constants.successCreateCourse);
@@ -266,7 +277,6 @@ public class IHMcreateCourse implements ActionListener {
      * Reset subject and date input
      */
     private void resetForm(){
-        textFieldSubject.setText("");
         datePicker.getJFormattedTextField().setText("");
     }
 

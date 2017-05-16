@@ -7,11 +7,13 @@ D:\Thomas\EPSI\java\agenda\agenda\src\main\java\data\Constants.java
 D:\Thomas\EPSI\java\agenda\agenda\src\main\java\ihm\calendar\LvwCalendarRenderer.java
 D:\Thomas\EPSI\java\agenda\agenda\src\main\java\ihm\IHMcreateUser.java
 D:\Thomas\EPSI\java\agenda\agenda\src\main\java\main\main.java
+D:\Thomas\EPSI\java\agenda\agenda\src\main\java\model\Subject.java
 D:\Thomas\EPSI\java\agenda\agenda\src\main\java\model\Person.java
 D:\Thomas\EPSI\java\agenda\agenda\src\main\java\data\Database.java
 D:\Thomas\EPSI\java\agenda\agenda\src\main\java\ihm\IHMday.java
 D:\Thomas\EPSI\java\agenda\agenda\src\main\java\util\JPlaceholderTextField.java
 D:\Thomas\EPSI\java\agenda\agenda\src\main\java\util\DateLabelFormatter.java
+D:\Thomas\EPSI\java\agenda\agenda\src\main\java\data\PopulateDB.java
 D:\Thomas\EPSI\java\agenda\agenda\src\main\java\ihm\IHMcreateCourse.java
 D:\Thomas\EPSI\java\agenda\agenda\src\main\java\ihm\calendar\IHMcalendar.java
 D:\Thomas\EPSI\java\agenda\agenda\src\main\java\model\Class.java

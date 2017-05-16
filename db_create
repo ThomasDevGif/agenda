@@ -28,8 +28,17 @@ CREATE TABLE Course (
 	personId INTEGER,
 	classId INTEGER,
 	roomId INTEGER,
-	subject VARCHAR(255),
+	subjectId INTEGER,
 	date VARCHAR(255),
 	hour INTEGER,
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE Subject (
+	id INTEGER not NULL,
+	label VARCHAR(255),
+	red VARCHAR(255),
+	green VARCHAR(255),
+	blue VARCHAR(255),
 	PRIMARY KEY (id)
 );

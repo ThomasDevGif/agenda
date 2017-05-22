@@ -42,7 +42,7 @@ public class PopulateDB {
         person2.insert();
 
         Person person3 = new Person();
-        person3.set("id", 4);
+        person3.set("id", 3);
         person3.set("login", "alexis");
         person3.set("password", "password");
         person3.set("firstname", "Alexis");
@@ -53,7 +53,7 @@ public class PopulateDB {
         person3.insert();
 
         Person student = new Person();
-        student.set("id", 5);
+        student.set("id", 4);
         student.set("login", "student");
         student.set("password", "password");
         student.set("firstname", "Student");

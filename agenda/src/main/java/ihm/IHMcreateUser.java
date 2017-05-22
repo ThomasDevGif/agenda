@@ -35,7 +35,7 @@ public class IHMcreateUser implements ActionListener {
      * Create interface
      */
     private void createIHM(){
-        window = new JFrame("Création d'un professeur");
+        window = new JFrame(Constants.appTitleCreateTeacher);
         window.setBounds(200,200,650,500);
 
         JPanel jpanel = new JPanel(){
@@ -53,7 +53,7 @@ public class IHMcreateUser implements ActionListener {
         inputFirstname = new JPlaceholderTextField(Constants.phFirstname);
         inputLastname = new JPlaceholderTextField(Constants.phLastname);
         inputEmail = new JPlaceholderTextField(Constants.phEmail);
-        buttonCreateUser = new JButton("Valider");
+        buttonCreateUser = new JButton(Constants.btnValidate);
         buttonCreateUser.addActionListener(this);
         jpanel.add(inputLogin);
         jpanel.add(inputPassword);
@@ -89,10 +89,10 @@ public class IHMcreateUser implements ActionListener {
                         2);
                 window.dispose();
             } else {
-                showError("Cet identifiant existe déjà.");
+                showError(Constants.errorCreateLogin);
             }
         } else {
-            showError("Erreur, veuillez saisir tous les champs.");
+            showError(Constants.errorFillForm);
         }
     }
 

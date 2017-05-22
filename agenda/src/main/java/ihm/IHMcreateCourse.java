@@ -125,24 +125,24 @@ public class IHMcreateCourse implements ActionListener {
      * Initialize interface
      */
     private void createIhm(){
-        window = new JFrame("Créer un cours");
+        window = new JFrame(Constants.appTitleCreateCourse);
         window.setBounds(200,200,650,500);
         JPanel jpanel = new JPanel(new GridLayout(0, 2));
 
         // Teacher
-        JLabel labelTeacher = new JLabel("Professeur");
+        JLabel labelTeacher = new JLabel(Constants.teacher);
         comboBoxTeacher = new JComboBox(mListTeachers.toArray());
 
         // Classes
-        JLabel labelClass = new JLabel("Classe");
+        JLabel labelClass = new JLabel(Constants.classroom);
         comboBoxClass = new JComboBox(mListClasses.toArray());
 
         // Subject
-        JLabel labelSubject = new JLabel("Matière");
+        JLabel labelSubject = new JLabel(Constants.subject);
         comboBoxSubject = new JComboBox(mListSubjects.toArray());
 
         // Room
-        JLabel labelRoom = new JLabel("Salle");
+        JLabel labelRoom = new JLabel(Constants.room);
         comboBoxRoom = new JComboBox(mListRooms.toArray());
 
         // DatePicker
@@ -156,16 +156,16 @@ public class IHMcreateCourse implements ActionListener {
         datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
 
         // Hour
-        JLabel labelHour = new JLabel("Heure");
+        JLabel labelHour = new JLabel(Constants.hour);
         comboBoxHour = new JComboBox(mListHours.toArray());
 
-        JLabel labelDuration = new JLabel("Durée");
+        JLabel labelDuration = new JLabel(Constants.duration);
         comboBoxDuration = new JComboBox(mListDurations.toArray());
 
         // Info message
         labelInfo = new JLabel();
         // Validate button
-        buttonValidate = new JButton("Valider");
+        buttonValidate = new JButton(Constants.btnValidate);
         buttonValidate.addActionListener(this);
 
         jpanel.add(labelTeacher);

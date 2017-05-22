@@ -1,6 +1,7 @@
 package ihm;
 
 
+import data.Constants;
 import data.Database;
 import model.Person;
 import util.JPlaceholderTextField;
@@ -18,9 +19,6 @@ public class IHMconnect implements ActionListener {
     private JPlaceholderTextField textPassword;
     private JLabel labelInfo;
     private JButton buttonConnect;
-    private String phLogin = "Identifiant";
-    private String phPassword = "Mot de passe";
-    private Database connect;
 
     public IHMconnect(){
         createIhm();
@@ -29,16 +27,16 @@ public class IHMconnect implements ActionListener {
     // IHM
     private void createIhm(){
         // FENETRE PRINCIPALE
-        window = new JFrame("Agenda - Connexion");
+        window = new JFrame(Constants.appTitleConnect);
         window.setBounds(200,200,400,150);
         window.setLayout(new GridLayout(4,0));
 
         // FORM
-        textLogin = new JPlaceholderTextField(phLogin);
-        textPassword = new JPlaceholderTextField(phPassword);
+        textLogin = new JPlaceholderTextField(Constants.phLogin);
+        textPassword = new JPlaceholderTextField(Constants.phPassword);
         labelInfo = new JLabel("", JLabel.CENTER);
         labelInfo.setForeground(Color.red);
-        buttonConnect = new JButton("Se connecter");
+        buttonConnect = new JButton(Constants.btnConnect);
         window.getContentPane().add(textLogin);
         window.getContentPane().add(textPassword);
         window.getContentPane().add(labelInfo);
@@ -64,11 +62,11 @@ public class IHMconnect implements ActionListener {
         // Connect to data
         Database db = new Database();
         // Check if input not empty
-        if(textLogin.getText().compareTo(phLogin) == 0 || textPassword.getText().compareTo(phPassword) == 0){
-            labelInfo.setText("Erreur, veuillez saisir tous les champs.");
+        if(textLogin.getText().compareTo(Constants.phLogin) == 0 || textPassword.getText().compareTo(Constants.phPassword) == 0){
+            labelInfo.setText(Constants.errorFillForm);
         }
         else if(db.checkUserConnection(textLogin.getText(), textPassword.getText()) == null){
-            labelInfo.setText("Erreur, login incorrect.");
+            labelInfo.setText(Constants.errorLogin);
         }
         // Close IHMconnect and display IHMagenda
         else{

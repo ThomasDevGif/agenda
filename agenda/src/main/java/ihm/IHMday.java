@@ -1,5 +1,6 @@
 package ihm;
 
+import data.Constants;
 import data.Database;
 import ihm.calendar.IHMcalendar;
 import model.Course;
@@ -234,7 +235,7 @@ public class IHMday implements ActionListener {
         contentPanel.add(panel18);
 
         // Return button
-        buttonBack = new JButton("Retour");
+        buttonBack = new JButton(Constants.btnBack);
         buttonBack.addActionListener(this);
 
         // Add content
